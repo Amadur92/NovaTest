@@ -10,6 +10,8 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
 
+
+
 @csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
@@ -49,5 +51,6 @@ def upload_file(request):
         ).execute()
 
         return JsonResponse({'document_id': document['id'], 'name': name, 'data': data})
-
+    else:
+        return JsonResponse({'text': 'default'})
     return JsonResponse({'error': 'Invalid request method'})
